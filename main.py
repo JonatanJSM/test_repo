@@ -16,6 +16,11 @@ def proxy_image(filename: str):
     content = r.content
     content_type = r.headers.get("Content-Type", "image/png")
 
+    if "gif" in content_type.lower():
+        content_type = "image/png"
+
+    content = r.content
+
     return Response(
         content=content,
         media_type=content_type,
